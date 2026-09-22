@@ -14,100 +14,239 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: #07111f;
       color: #f1f5f9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     main {
       width: 100%;
-      max-width: 760px;
-      padding: 48px 24px;
+      max-width: 900px;
+      margin: auto;
+      padding: 70px 24px;
     }
 
     .logo {
-      font-size: 18px;
-      font-weight: 700;
       color: #2dd4bf;
-      letter-spacing: 2px;
-      margin-bottom: 56px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      margin-bottom: 45px;
     }
 
     h1 {
-      font-size: clamp(42px, 8vw, 72px);
+      font-size: clamp(42px, 7vw, 68px);
       line-height: 1.05;
-      margin: 0 0 24px;
       letter-spacing: -2px;
+      margin: 0 0 24px;
     }
 
     .subtitle {
-      font-size: 21px;
-      line-height: 1.6;
       color: #94a3b8;
-      max-width: 650px;
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 700px;
     }
 
     .card {
-      margin-top: 48px;
-      padding: 28px;
+      margin-top: 50px;
       background: #0d1b2a;
       border: 1px solid #1e3348;
-      border-radius: 16px;
+      border-radius: 18px;
+      padding: 28px;
     }
 
     .card h2 {
       margin-top: 0;
-      font-size: 20px;
     }
 
-    .card p {
+    .description {
       color: #94a3b8;
-      line-height: 1.7;
-      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    input {
+      flex: 1;
+      padding: 14px 16px;
+      background: #07111f;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 14px 24px;
+      border: 0;
+      border-radius: 10px;
+      background: #2dd4bf;
+      color: #05201c;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    #results {
+      display: none;
+      margin-top: 30px;
+    }
+
+    .demo-label {
+      display: inline-block;
+      background: #172554;
+      color: #93c5fd;
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .post {
+      padding: 20px;
+      background: #07111f;
+      border: 1px solid #1e3348;
+      border-radius: 12px;
+    }
+
+    .username {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .post-text {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .notice {
+      margin-top: 18px;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     footer {
-      margin-top: 48px;
-      font-size: 14px;
+      margin-top: 50px;
       color: #64748b;
+      font-size: 14px;
     }
 
-    a {
+    footer a {
       color: #94a3b8;
+    }
+
+    @media (max-width: 600px) {
+      .search-row {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 
 <body>
-  <main>
-    <div class="logo">RTIP</div>
 
-    <h1>
-      Market intelligence<br>
-      from real conversations.
-    </h1>
+<main>
 
-    <p class="subtitle">
-      RTIP is a research and analytics platform that analyzes
-      public market conversations to discover relationships between
-      companies, technologies, industries, and emerging narratives.
+  <div class="logo">RTIP</div>
+
+  <h1>
+    Market intelligence<br>
+    from real conversations.
+  </h1>
+
+  <p class="subtitle">
+    RTIP analyzes public market conversations to discover
+    relationships between companies, technologies, industries,
+    and emerging narratives.
+  </p>
+
+  <section class="card">
+
+    <h2>Threads Market Search</h2>
+
+    <p class="description">
+      Search public Threads conversations about companies,
+      technologies and financial-market topics.
     </p>
 
-    <section class="card">
-      <h2>Threads Market Research</h2>
+    <div class="search-row">
+      <input
+        id="keyword"
+        value="台股"
+        placeholder="Search topics, companies or technologies"
+      >
 
-      <p>
-        RTIP uses the Threads API to discover public conversations
-        about companies, technologies, and financial-market topics.
-        These conversations are analyzed to understand market
-        narratives and how they evolve over time.
-      </p>
-    </section>
+      <button onclick="searchThreads()">
+        Search Threads
+      </button>
+    </div>
 
-    <footer>
-      © 2026 RTIP ·
-      <a href="./privacy-policy.html">Privacy Policy</a>
-    </footer>
-  </main>
+    <div id="results">
+
+      <div class="demo-label">
+        DEMO RESULT
+      </div>
+
+      <div class="post">
+
+        <div class="username">
+          @lotso.declutter
+        </div>
+
+        <div class="post-text">
+          台股開高走低
+        </div>
+
+        <div class="meta">
+          Threads · Sep 22, 2026
+        </div>
+
+      </div>
+
+      <div class="notice">
+        This is demonstration data showing how RTIP presents
+        Threads Keyword Search results. Live Threads API requests
+        are performed securely by the RTIP backend and access
+        tokens are never exposed to the browser.
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 RTIP ·
+    <a href="./privacy-policy.html">Privacy Policy</a>
+  </footer>
+
+</main>
+
+<script>
+function searchThreads() {
+
+  const keyword =
+    document.getElementById("keyword").value.trim();
+
+  if (!keyword) {
+    alert("Please enter a search keyword.");
+    return;
+  }
+
+  document.getElementById("results").style.display = "block";
+}
+</script>
+
 </body>
 </html>
